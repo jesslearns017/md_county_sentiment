@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miami-Dade Sentiment Platform - Demo</title>
+    <title>Miami-Dade County - Small Business Sentiment Platform</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0075C9 0%, #005a9c 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -27,16 +27,34 @@
             text-align: center;
             color: white;
             margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
         }
         
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .header p {
             font-size: 1.2em;
-            opacity: 0.9;
+            opacity: 0.95;
+        }
+        
+        .county-badge {
+            display: inline-block;
+            background: #6B8E23;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
         }
         
         .demo-section {
@@ -45,16 +63,20 @@
             padding: 30px;
             margin-bottom: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-top: 5px solid #0075C9;
         }
         
         .demo-section h2 {
-            color: #667eea;
+            color: #0075C9;
             margin-bottom: 20px;
             font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .button {
-            background: #667eea;
+            background: #0075C9;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -63,16 +85,25 @@
             cursor: pointer;
             margin: 10px 10px 10px 0;
             transition: all 0.3s;
+            font-weight: 600;
         }
         
         .button:hover {
-            background: #5568d3;
+            background: #005a9c;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 117, 201, 0.4);
         }
         
         .button:active {
             transform: translateY(0);
+        }
+        
+        .button.secondary {
+            background: #6B8E23;
+        }
+        
+        .button.secondary:hover {
+            background: #5a7a1f;
         }
         
         .output {
@@ -86,20 +117,21 @@
             overflow-y: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
+            border-left: 4px solid #0075C9;
         }
         
         .loading {
-            color: #667eea;
+            color: #0075C9;
             font-weight: bold;
         }
         
         .error {
-            color: #e74c3c;
+            color: #dc3545;
             font-weight: bold;
         }
         
         .success {
-            color: #27ae60;
+            color: #6B8E23;
             font-weight: bold;
         }
         
@@ -115,7 +147,7 @@
         
         input[type="text"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #0075C9;
         }
         
         .stats {
@@ -126,20 +158,23 @@
         }
         
         .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0075C9 0%, #005a9c 100%);
             color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 117, 201, 0.3);
         }
         
         .stat-card h3 {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         .stat-card p {
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 600;
         }
         
         .posts-container {
@@ -150,21 +185,30 @@
         
         .post-card {
             background: #f9f9f9;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #0075C9;
             padding: 15px;
             border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        
+        .post-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .post-card.positive {
-            border-left-color: #27ae60;
+            border-left-color: #6B8E23;
+            background: #f8fdf0;
         }
         
         .post-card.negative {
-            border-left-color: #e74c3c;
+            border-left-color: #dc3545;
+            background: #fff5f5;
         }
         
         .post-card.neutral {
-            border-left-color: #95a5a6;
+            border-left-color: #6c757d;
+            background: #f8f9fa;
         }
         
         .post-meta {
@@ -173,51 +217,76 @@
             margin-top: 10px;
             font-size: 0.9em;
             color: #666;
+            flex-wrap: wrap;
         }
         
         .sentiment-badge {
             display: inline-block;
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 5px;
             font-size: 0.85em;
             font-weight: bold;
         }
         
         .sentiment-badge.positive {
-            background: #27ae60;
+            background: #6B8E23;
             color: white;
         }
         
         .sentiment-badge.negative {
-            background: #e74c3c;
+            background: #dc3545;
             color: white;
         }
         
         .sentiment-badge.neutral {
-            background: #95a5a6;
+            background: #6c757d;
             color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .footer a {
+            color: #6B8E23;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏢 Miami-Dade Sentiment Intelligence</h1>
-            <p>AI-Powered Platform for Small Business Support</p>
+            <div class="logo">
+                <h1>🏛️ Miami-Dade County</h1>
+                <div class="county-badge">OFFICIAL DEMO</div>
+            </div>
+            <h1>Small Business Sentiment Intelligence</h1>
+            <p>AI-Powered Platform for Business Support & Analysis</p>
         </div>
 
         <!-- API Status -->
         <div class="demo-section">
-            <h2>📡 API Status</h2>
+            <h2>📡 System Status</h2>
             <button class="button" onclick="checkHealth()">Check API Health</button>
-            <button class="button" onclick="getStats()">Get Statistics</button>
+            <button class="button secondary" onclick="getStats()">Get Statistics</button>
             <div id="statusOutput" class="output" style="display: none;"></div>
         </div>
 
         <!-- Sentiment Analysis -->
         <div class="demo-section">
-            <h2>🧠 Test Sentiment Analysis</h2>
-            <input type="text" id="sentimentText" placeholder="Enter text to analyze (e.g., 'I love the new business permit portal!')" 
+            <h2>🧠 AI Sentiment Analysis</h2>
+            <p style="color: #666; margin-bottom: 15px;">Test the natural language processing capabilities</p>
+            <input type="text" id="sentimentText" placeholder="Enter text to analyze..." 
                    value="Just got my business license approved! The online portal made it so easy.">
             <button class="button" onclick="analyzeSentiment()">Analyze Sentiment</button>
             <div id="sentimentOutput" class="output" style="display: none;"></div>
@@ -225,8 +294,9 @@
 
         <!-- Resource Recommendations -->
         <div class="demo-section">
-            <h2>💬 Test Resource Recommender</h2>
-            <input type="text" id="recommendQuery" placeholder="Ask for help (e.g., 'I need help with business permits')"
+            <h2>💬 Smart Resource Recommender</h2>
+            <p style="color: #666; margin-bottom: 15px;">AI-powered matching of business needs to County resources</p>
+            <input type="text" id="recommendQuery" placeholder="What do you need help with?"
                    value="I need help getting a business permit">
             <button class="button" onclick="getRecommendations()">Get Recommendations</button>
             <div id="recommendOutput" class="output" style="display: none;"></div>
@@ -234,12 +304,23 @@
 
         <!-- Social Media Posts -->
         <div class="demo-section">
-            <h2>📊 Recent Social Media Posts</h2>
-            <button class="button" onclick="getPosts()">Load Posts</button>
+            <h2>📊 Social Media Analysis Dashboard</h2>
+            <p style="color: #666; margin-bottom: 15px;">Real-time sentiment tracking from small business owners</p>
+            <button class="button" onclick="getPosts()">Load Recent Posts</button>
             <div id="postsOutput" style="display: none;">
                 <div class="stats" id="statsCards"></div>
                 <div class="posts-container" id="postsContainer"></div>
             </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Miami-Dade County Small Business Sentiment Platform</strong></p>
+            <p style="margin-top: 10px;">
+                Backend API: <a href="https://md-county-sentiment.onrender.com" target="_blank">md-county-sentiment.onrender.com</a>
+            </p>
+            <p style="margin-top: 5px; opacity: 0.8; font-size: 0.9em;">
+                Capstone Project 2025 | Miami Dade College
+            </p>
         </div>
     </div>
 
@@ -252,7 +333,7 @@
             element.style.display = 'block';
             
             if (type === 'loading') {
-                element.innerHTML = '<span class="loading">⏳ Loading...</span>';
+                element.innerHTML = '<span class="loading">⏳ Processing...</span>';
             } else if (type === 'error') {
                 element.innerHTML = '<span class="error">❌ ' + content + '</span>';
             } else if (type === 'success') {
@@ -312,10 +393,10 @@
 📝 Text: "${data.text}"
 
 🎯 Sentiment: ${data.sentiment.sentiment.toUpperCase()}
-📊 Score: ${data.sentiment.score}
+📊 Score: ${data.sentiment.score} (Range: -1 to +1)
 🎭 Subjectivity: ${data.sentiment.subjectivity}
 
-🏷️ Topics: ${data.topics.join(', ')}
+🏷️ Detected Topics: ${data.topics.join(', ')}
                 `;
                 
                 showOutput('sentimentOutput', output, 'success');
@@ -347,17 +428,17 @@
                 let output = `
 📝 Your Query: "${data.query}"
 
-🎯 Sentiment: ${data.sentiment.sentiment.toUpperCase()} (${data.sentiment.score})
-🏷️ Topics: ${data.topics.join(', ')}
+🎯 Detected Sentiment: ${data.sentiment.sentiment.toUpperCase()} (Score: ${data.sentiment.score})
+🏷️ Identified Topics: ${data.topics.join(', ')}
 
-💡 Recommended Resources:
+💡 Recommended County Resources:
 `;
                 
                 data.recommendations.forEach((rec, index) => {
                     output += `
-${index + 1}. ${rec.name}
+${index + 1}. 📌 ${rec.name}
    ${rec.description}
-   Relevance: ${rec.relevance_score}
+   Relevance Score: ${rec.relevance_score}
 `;
                 });
                 
@@ -371,31 +452,34 @@ ${index + 1}. ${rec.name}
             const postsOutput = document.getElementById('postsOutput');
             postsOutput.style.display = 'block';
             
-            document.getElementById('postsContainer').innerHTML = '<p class="loading">⏳ Loading posts...</p>';
+            document.getElementById('postsContainer').innerHTML = '<p class="loading">⏳ Loading posts from social media...</p>';
             
             try {
                 const response = await fetch(`${API_URL}/api/posts?count=10`);
                 const data = await response.json();
                 
-                // Show stats
+                // Calculate stats
                 const stats = {
                     positive: data.posts.filter(p => p.sentiment === 'positive').length,
                     negative: data.posts.filter(p => p.sentiment === 'negative').length,
                     neutral: data.posts.filter(p => p.sentiment === 'neutral').length
                 };
                 
+                const total = stats.positive + stats.negative + stats.neutral;
+                const positivePercent = Math.round((stats.positive / total) * 100);
+                
                 document.getElementById('statsCards').innerHTML = `
                     <div class="stat-card">
                         <h3>${stats.positive}</h3>
-                        <p>Positive</p>
+                        <p>😊 Positive Posts</p>
                     </div>
                     <div class="stat-card">
                         <h3>${stats.negative}</h3>
-                        <p>Negative</p>
+                        <p>😞 Negative Posts</p>
                     </div>
                     <div class="stat-card">
-                        <h3>${stats.neutral}</h3>
-                        <p>Neutral</p>
+                        <h3>${positivePercent}%</h3>
+                        <p>Satisfaction Rate</p>
                     </div>
                 `;
                 
@@ -404,11 +488,12 @@ ${index + 1}. ${rec.name}
                 data.posts.forEach(post => {
                     postsHTML += `
                         <div class="post-card ${post.sentiment}">
-                            <p>${post.text}</p>
+                            <p style="line-height: 1.6;">${post.text}</p>
                             <div class="post-meta">
-                                <span class="sentiment-badge ${post.sentiment}">${post.sentiment}</span>
-                                <span>📝 Topic: ${post.topic}</span>
+                                <span class="sentiment-badge ${post.sentiment}">${post.sentiment.toUpperCase()}</span>
+                                <span>📝 ${post.topic}</span>
                                 <span>🕒 ${post.timestamp}</span>
+                                <span>📱 ${post.source || 'Social Media'}</span>
                             </div>
                         </div>
                     `;
@@ -422,11 +507,13 @@ ${index + 1}. ${rec.name}
             }
         }
 
-        // Auto-check health on page load
+        // Welcome message on page load
         window.onload = function() {
+            console.log('✅ Miami-Dade County Sentiment Platform');
             console.log('API URL:', API_URL);
-            console.log('Update the API_URL constant in this file with your Render URL!');
+            console.log('Ready to analyze sentiment!');
         };
     </script>
 </body>
 </html>
+
