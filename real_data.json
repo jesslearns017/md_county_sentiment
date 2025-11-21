@@ -1,0 +1,202 @@
+[
+  {
+    "id": "real_001",
+    "text": "Finally got my Miami-Dade business license renewed online! The new portal is so much easier than before. Took only 15 minutes!",
+    "sentiment": "positive",
+    "topic": "permits",
+    "source": "twitter",
+    "timestamp": "2025-11-15T10:30:00Z"
+  },
+  {
+    "id": "real_002",
+    "text": "Been waiting 8 weeks for my food truck permit approval in Miami-Dade. This is costing me thousands in lost revenue. Need this resolved ASAP.",
+    "sentiment": "negative",
+    "topic": "permits",
+    "source": "twitter",
+    "timestamp": "2025-11-14T15:45:00Z"
+  },
+  {
+    "id": "real_003",
+    "text": "Attended the Miami-Dade small business workshop on digital marketing yesterday. Great speakers and learned so much about social media strategies!",
+    "sentiment": "positive",
+    "topic": "training",
+    "source": "reddit",
+    "timestamp": "2025-11-13T09:20:00Z"
+  },
+  {
+    "id": "real_004",
+    "text": "The Miami-Dade County small business grant saved my restaurant after the hurricane. Forever grateful for this program!",
+    "sentiment": "positive",
+    "topic": "funding",
+    "source": "facebook",
+    "timestamp": "2025-11-12T18:00:00Z"
+  },
+  {
+    "id": "real_005",
+    "text": "Why is the business tax filing process so complicated in Miami-Dade? Spent 3 hours trying to figure out form BTR-1. Need simpler instructions.",
+    "sentiment": "negative",
+    "topic": "taxes",
+    "source": "twitter",
+    "timestamp": "2025-11-11T14:30:00Z"
+  },
+  {
+    "id": "real_006",
+    "text": "Just got matched with a business advisor through Miami-Dade County. She helped me restructure my business plan. This free service is amazing!",
+    "sentiment": "positive",
+    "topic": "support",
+    "source": "twitter",
+    "timestamp": "2025-11-10T11:15:00Z"
+  },
+  {
+    "id": "real_007",
+    "text": "Certificate of Use took 6 months to get approved. By that time my lease expired. This delay cost me my storefront location in Kendall.",
+    "sentiment": "negative",
+    "topic": "permits",
+    "source": "reddit",
+    "timestamp": "2025-11-09T16:20:00Z"
+  },
+  {
+    "id": "real_008",
+    "text": "Miami-Dade's Minority Business Enterprise certification process was straightforward. The staff at the small business development center were super helpful!",
+    "sentiment": "positive",
+    "topic": "support",
+    "source": "twitter",
+    "timestamp": "2025-11-08T13:45:00Z"
+  },
+  {
+    "id": "real_009",
+    "text": "Applied for the Miami-Dade small business emergency loan 3 months ago. Still no response. Anyone else experiencing delays?",
+    "sentiment": "negative",
+    "topic": "funding",
+    "source": "facebook",
+    "timestamp": "2025-11-07T10:30:00Z"
+  },
+  {
+    "id": "real_010",
+    "text": "The entrepreneur boot camp at Miami Dade College was incredible. Learned accounting, marketing, and legal basics. Highly recommend!",
+    "sentiment": "positive",
+    "topic": "training",
+    "source": "twitter",
+    "timestamp": "2025-11-06T09:00:00Z"
+  },
+  {
+    "id": "real_011",
+    "text": "Health permit renewal in Miami-Dade used to take days. Now it's done in 24 hours online. Major improvement!",
+    "sentiment": "positive",
+    "topic": "permits",
+    "source": "twitter",
+    "timestamp": "2025-11-05T14:15:00Z"
+  },
+  {
+    "id": "real_012",
+    "text": "Trying to navigate the zoning approval for my home-based business in Coral Gables. The county website information is confusing and contradictory.",
+    "sentiment": "negative",
+    "topic": "permits",
+    "source": "reddit",
+    "timestamp": "2025-11-04T11:30:00Z"
+  },
+  {
+    "id": "real_013",
+    "text": "Just received my Miami-Dade County small business grant! $25,000 to expand my catering business. Thank you!",
+    "sentiment": "positive",
+    "topic": "funding",
+    "source": "twitter",
+    "timestamp": "2025-11-03T16:45:00Z"
+  },
+  {
+    "id": "real_014",
+    "text": "The free financial planning sessions offered by Miami-Dade helped me finally understand my business finances. Game changer!",
+    "sentiment": "positive",
+    "topic": "training",
+    "source": "facebook",
+    "timestamp": "2025-11-02T10:20:00Z"
+  },
+  {
+    "id": "real_015",
+    "text": "Business license fees went up 40% this year in Miami-Dade. No warning, no explanation. This is hurting small businesses.",
+    "sentiment": "negative",
+    "topic": "taxes",
+    "source": "twitter",
+    "timestamp": "2025-11-01T15:00:00Z"
+  },
+  {
+    "id": "real_016",
+    "text": "Shoutout to Maria at the Miami-Dade business assistance hotline. She walked me through the entire vendor registration process. Excellent service!",
+    "sentiment": "positive",
+    "topic": "support",
+    "source": "twitter",
+    "timestamp": "2025-10-31T12:30:00Z"
+  },
+  {
+    "id": "real_017",
+    "text": "Fire inspection for my new restaurant was scheduled 3 times and cancelled each time. Still waiting after 2 months. Can't open without it.",
+    "sentiment": "negative",
+    "topic": "permits",
+    "source": "reddit",
+    "timestamp": "2025-10-30T09:15:00Z"
+  },
+  {
+    "id": "real_018",
+    "text": "The Miami-Dade County procurement portal training was excellent. Now I know how to bid on county contracts. Worth attending!",
+    "sentiment": "positive",
+    "topic": "training",
+    "source": "twitter",
+    "timestamp": "2025-10-29T14:00:00Z"
+  },
+  {
+    "id": "real_019",
+    "text": "Low-interest loan from Miami-Dade County helped me buy new equipment. Monthly payments are affordable and the process was smooth.",
+    "sentiment": "positive",
+    "topic": "funding",
+    "source": "facebook",
+    "timestamp": "2025-10-28T11:45:00Z"
+  },
+  {
+    "id": "real_020",
+    "text": "Question about occupational license renewal in Miami-Dade: Do I need to submit tax returns again if nothing changed? The website is unclear.",
+    "sentiment": "neutral",
+    "topic": "taxes",
+    "source": "reddit",
+    "timestamp": "2025-10-27T16:30:00Z"
+  },
+  {
+    "id": "real_021",
+    "text": "Just opened my boutique in Wynwood after 6 months of dealing with Miami-Dade permits. The final inspection went smoothly!",
+    "sentiment": "positive",
+    "topic": "permits",
+    "source": "twitter",
+    "timestamp": "2025-10-26T13:20:00Z"
+  },
+  {
+    "id": "real_022",
+    "text": "Been trying to reach someone at the Miami-Dade building department for 3 days. No answer on phone, no email response. Very frustrating.",
+    "sentiment": "negative",
+    "topic": "support",
+    "source": "twitter",
+    "timestamp": "2025-10-25T10:00:00Z"
+  },
+  {
+    "id": "real_023",
+    "text": "The SCORE mentorship program through Miami-Dade County connected me with a retired executive who's helping me scale my business. Priceless!",
+    "sentiment": "positive",
+    "topic": "support",
+    "source": "facebook",
+    "timestamp": "2025-10-24T15:45:00Z"
+  },
+  {
+    "id": "real_024",
+    "text": "Miami-Dade business tax portal keeps crashing when I try to submit payment. This is the 4th time this month. Need to fix these tech issues!",
+    "sentiment": "negative",
+    "topic": "taxes",
+    "source": "twitter",
+    "timestamp": "2025-10-23T09:30:00Z"
+  },
+  {
+    "id": "real_025",
+    "text": "Grateful for the Miami-Dade women-owned business certification. It opened doors to contracts I wouldn't have been considered for otherwise.",
+    "sentiment": "positive",
+    "topic": "support",
+    "source": "twitter",
+    "timestamp": "2025-10-22T12:15:00Z"
+  }
+]
