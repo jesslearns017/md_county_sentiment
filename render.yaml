@@ -1,0 +1,16 @@
+services:
+  # Backend API Service
+  - type: web
+    name: sentiment-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python -m textblob.download_corpora"
+    startCommand: "gunicorn backend_api:app"
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FLASK_ENV
+        value: production
+    autoDeploy: true
