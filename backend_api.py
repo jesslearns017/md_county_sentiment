@@ -20,7 +20,7 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-# Resource Database
+# Expanded Resource Database with 12+ Categories
 RESOURCES = {
     'permits': [
         {
@@ -28,7 +28,7 @@ RESOURCES = {
             'name': 'Online Permit Portal',
             'description': 'Fast-track your business permits online',
             'url': 'https://business.miamidade.gov/permits',
-            'keywords': ['permit', 'license', 'approval', 'registration']
+            'keywords': ['permit', 'license', 'approval', 'registration', 'certificate', 'zoning']
         },
         {
             'id': 2,
@@ -43,11 +43,18 @@ RESOURCES = {
             'description': 'Weekly sessions on permit requirements',
             'url': 'https://business.miamidade.gov/workshops',
             'keywords': ['permit', 'training', 'workshop', 'learn']
+        },
+        {
+            'id': 4,
+            'name': 'Food Service Permits',
+            'description': 'Specialized help for restaurant and food business permits',
+            'url': 'https://business.miamidade.gov/food-permits',
+            'keywords': ['food', 'restaurant', 'catering', 'health', 'mobile', 'truck']
         }
     ],
     'funding': [
         {
-            'id': 4,
+            'id': 5,
             'name': 'Small Business Grant Program',
             'description': 'Grants up to $50,000 for eligible businesses',
             'url': 'https://business.miamidade.gov/grants',
@@ -136,6 +143,220 @@ RESOURCES = {
             'url': 'https://business.miamidade.gov/hotline',
             'keywords': ['help', 'support', 'questions', 'hotline']
         }
+    ],
+    'legal': [
+        {
+            'id': 16,
+            'name': 'Legal Aid Services',
+            'description': 'Free and low-cost legal assistance for small businesses',
+            'url': 'https://business.miamidade.gov/legal-aid',
+            'keywords': ['legal', 'lawyer', 'attorney', 'law', 'contract', 'lawsuit', 'court']
+        },
+        {
+            'id': 17,
+            'name': 'Business Structure Consultation',
+            'description': 'Help choosing LLC, Corporation, or Sole Proprietorship',
+            'url': 'https://business.miamidade.gov/structure',
+            'keywords': ['llc', 'corporation', 'structure', 'entity', 'incorporation']
+        },
+        {
+            'id': 18,
+            'name': 'Contract Review Service',
+            'description': 'Expert review of business contracts and agreements',
+            'url': 'https://business.miamidade.gov/contracts',
+            'keywords': ['contract', 'agreement', 'review', 'terms', 'legal']
+        },
+        {
+            'id': 19,
+            'name': 'Guardianship & Estate Planning',
+            'description': 'Business succession and guardianship planning resources',
+            'url': 'https://business.miamidade.gov/guardianship',
+            'keywords': ['guardianship', 'estate', 'succession', 'will', 'trust', 'planning']
+        }
+    ],
+    'insurance': [
+        {
+            'id': 20,
+            'name': 'Business Insurance Guide',
+            'description': 'Understanding liability, property, and workers comp insurance',
+            'url': 'https://business.miamidade.gov/insurance',
+            'keywords': ['insurance', 'liability', 'coverage', 'workers comp', 'protection']
+        },
+        {
+            'id': 21,
+            'name': 'Insurance Provider Directory',
+            'description': 'Connect with business insurance providers in Miami-Dade',
+            'url': 'https://business.miamidade.gov/insurance-providers',
+            'keywords': ['insurance', 'provider', 'broker', 'agent', 'quote']
+        },
+        {
+            'id': 22,
+            'name': 'Health Insurance Options',
+            'description': 'Affordable health insurance for small business owners',
+            'url': 'https://business.miamidade.gov/health-insurance',
+            'keywords': ['health', 'medical', 'insurance', 'coverage', 'benefits']
+        }
+    ],
+    'marketing': [
+        {
+            'id': 23,
+            'name': 'Digital Marketing Bootcamp',
+            'description': 'Master social media, SEO, and online advertising',
+            'url': 'https://business.miamidade.gov/marketing',
+            'keywords': ['marketing', 'advertising', 'promotion', 'branding', 'social media']
+        },
+        {
+            'id': 24,
+            'name': 'Website Development Resources',
+            'description': 'Build your business website with free tools and templates',
+            'url': 'https://business.miamidade.gov/web-development',
+            'keywords': ['website', 'web', 'online', 'digital', 'internet', 'domain']
+        },
+        {
+            'id': 25,
+            'name': 'Marketing Grant Program',
+            'description': 'Grants up to $10,000 for marketing and advertising',
+            'url': 'https://business.miamidade.gov/marketing-grants',
+            'keywords': ['marketing', 'advertising', 'grant', 'promotion', 'budget']
+        }
+    ],
+    'technology': [
+        {
+            'id': 26,
+            'name': 'Technology Consultation',
+            'description': 'Free IT assessment and technology planning for your business',
+            'url': 'https://business.miamidade.gov/tech-consult',
+            'keywords': ['technology', 'it', 'computer', 'software', 'system', 'tech']
+        },
+        {
+            'id': 27,
+            'name': 'Cybersecurity Resources',
+            'description': 'Protect your business from cyber threats',
+            'url': 'https://business.miamidade.gov/cybersecurity',
+            'keywords': ['cybersecurity', 'security', 'hacking', 'data', 'breach', 'protection']
+        },
+        {
+            'id': 28,
+            'name': 'E-commerce Setup Help',
+            'description': 'Launch your online store with expert guidance',
+            'url': 'https://business.miamidade.gov/ecommerce',
+            'keywords': ['ecommerce', 'online', 'store', 'shop', 'selling', 'website']
+        }
+    ],
+    'real_estate': [
+        {
+            'id': 29,
+            'name': 'Commercial Property Listings',
+            'description': 'Find the perfect location for your business',
+            'url': 'https://business.miamidade.gov/property',
+            'keywords': ['property', 'real estate', 'location', 'space', 'lease', 'rent', 'office']
+        },
+        {
+            'id': 30,
+            'name': 'Zoning & Land Use Help',
+            'description': 'Navigate zoning laws and land use regulations',
+            'url': 'https://business.miamidade.gov/zoning',
+            'keywords': ['zoning', 'land', 'property', 'location', 'code', 'regulation']
+        },
+        {
+            'id': 31,
+            'name': 'Lease Negotiation Assistance',
+            'description': 'Expert help negotiating commercial leases',
+            'url': 'https://business.miamidade.gov/lease-help',
+            'keywords': ['lease', 'rent', 'landlord', 'negotiate', 'contract', 'space']
+        }
+    ],
+    'hr': [
+        {
+            'id': 32,
+            'name': 'Hiring & Employment Guide',
+            'description': 'Everything you need to know about hiring employees',
+            'url': 'https://business.miamidade.gov/hiring',
+            'keywords': ['hiring', 'employee', 'staff', 'recruit', 'employment', 'hr', 'payroll']
+        },
+        {
+            'id': 33,
+            'name': 'Employee Benefits Planning',
+            'description': 'Design competitive benefits packages for your team',
+            'url': 'https://business.miamidade.gov/benefits',
+            'keywords': ['benefits', 'employee', 'health', 'retirement', 'perks', 'compensation']
+        },
+        {
+            'id': 34,
+            'name': 'Workplace Compliance Training',
+            'description': 'Stay compliant with labor laws and regulations',
+            'url': 'https://business.miamidade.gov/compliance',
+            'keywords': ['compliance', 'labor', 'law', 'regulation', 'hr', 'employee', 'rights']
+        }
+    ],
+    'export': [
+        {
+            'id': 35,
+            'name': 'International Trade Office',
+            'description': 'Expand your business to international markets',
+            'url': 'https://business.miamidade.gov/export',
+            'keywords': ['export', 'international', 'trade', 'global', 'foreign', 'import']
+        },
+        {
+            'id': 36,
+            'name': 'Export Documentation Help',
+            'description': 'Navigate customs, tariffs, and shipping requirements',
+            'url': 'https://business.miamidade.gov/export-docs',
+            'keywords': ['export', 'customs', 'shipping', 'documentation', 'international']
+        },
+        {
+            'id': 37,
+            'name': 'Trade Mission Programs',
+            'description': 'Join delegations to explore new markets',
+            'url': 'https://business.miamidade.gov/trade-missions',
+            'keywords': ['trade', 'mission', 'international', 'export', 'delegation']
+        }
+    ],
+    'networking': [
+        {
+            'id': 38,
+            'name': 'Business Networking Events',
+            'description': 'Monthly meetups and networking opportunities',
+            'url': 'https://business.miamidade.gov/networking',
+            'keywords': ['networking', 'events', 'meetup', 'connect', 'community', 'entrepreneurs']
+        },
+        {
+            'id': 39,
+            'name': 'Industry-Specific Groups',
+            'description': 'Join groups focused on your industry',
+            'url': 'https://business.miamidade.gov/industry-groups',
+            'keywords': ['industry', 'group', 'association', 'network', 'peers', 'community']
+        },
+        {
+            'id': 40,
+            'name': 'Chamber of Commerce',
+            'description': 'Connect with the Miami-Dade business community',
+            'url': 'https://business.miamidade.gov/chamber',
+            'keywords': ['chamber', 'commerce', 'business', 'community', 'networking']
+        }
+    ],
+    'certification': [
+        {
+            'id': 41,
+            'name': 'Minority Business Certification',
+            'description': 'MBE certification for minority-owned businesses',
+            'url': 'https://business.miamidade.gov/mbe',
+            'keywords': ['minority', 'mbe', 'certification', 'diversity', 'certified']
+        },
+        {
+            'id': 42,
+            'name': 'Women-Owned Business Certification',
+            'description': 'WBE certification opens doors to new contracts',
+            'url': 'https://business.miamidade.gov/wbe',
+            'keywords': ['women', 'wbe', 'certification', 'female', 'certified']
+        },
+        {
+            'id': 43,
+            'name': 'Small Business Certification',
+            'description': 'SBE certification for County contracting opportunities',
+            'url': 'https://business.miamidade.gov/sbe',
+            'keywords': ['small', 'sbe', 'certification', 'certified', 'contractor']
+        }
     ]
 }
 
@@ -168,17 +389,32 @@ def extract_topics(text):
     text_lower = text.lower()
     topics = []
     
+    # Comprehensive topic keywords for 12 categories
     topic_keywords = {
-        'permits': ['permit', 'license', 'approval', 'registration', 'certificate'],
-        'funding': ['grant', 'loan', 'funding', 'money', 'finance', 'capital'],
-        'training': ['training', 'workshop', 'course', 'education', 'learn', 'teach'],
-        'taxes': ['tax', 'taxes', 'irs', 'filing', 'deduction'],
-        'support': ['help', 'support', 'assistance', 'advisor', 'mentor']
+        'permits': ['permit', 'license', 'approval', 'registration', 'certificate', 'zoning', 'inspection', 'code'],
+        'funding': ['grant', 'loan', 'funding', 'money', 'finance', 'capital', 'investment', 'relief'],
+        'training': ['training', 'workshop', 'course', 'education', 'learn', 'teach', 'bootcamp', 'class'],
+        'taxes': ['tax', 'taxes', 'irs', 'filing', 'deduction', 'credit', 'return', 'obligation'],
+        'legal': ['legal', 'lawyer', 'attorney', 'law', 'contract', 'lawsuit', 'court', 'guardianship', 'estate', 'succession', 'llc', 'corporation', 'incorporation', 'entity', 'structure'],
+        'insurance': ['insurance', 'liability', 'coverage', 'workers comp', 'protection', 'health insurance', 'medical', 'benefits', 'broker', 'agent'],
+        'marketing': ['marketing', 'advertising', 'promotion', 'branding', 'social media', 'website', 'web', 'online presence', 'seo', 'digital'],
+        'technology': ['technology', 'it', 'computer', 'software', 'system', 'tech', 'cybersecurity', 'security', 'ecommerce', 'online store'],
+        'real_estate': ['property', 'real estate', 'location', 'space', 'lease', 'rent', 'office', 'zoning', 'land use', 'landlord'],
+        'hr': ['hiring', 'employee', 'staff', 'recruit', 'employment', 'hr', 'payroll', 'benefits', 'compensation', 'compliance', 'labor'],
+        'export': ['export', 'international', 'trade', 'global', 'foreign', 'import', 'customs', 'shipping', 'tariff'],
+        'networking': ['networking', 'events', 'meetup', 'connect', 'community', 'entrepreneurs', 'chamber', 'industry group'],
+        'certification': ['minority', 'mbe', 'wbe', 'sbe', 'certification', 'certified', 'women-owned', 'diversity', 'contractor'],
+        'support': ['help', 'support', 'assistance', 'advisor', 'mentor', 'guidance', 'hotline', 'question']
     }
     
+    # Check for matches in order of specificity (most specific first)
     for topic, keywords in topic_keywords.items():
         if any(keyword in text_lower for keyword in keywords):
             topics.append(topic)
+    
+    # Remove duplicates while preserving order
+    seen = set()
+    topics = [x for x in topics if not (x in seen or seen.add(x))]
     
     return topics if topics else ['support']  # Default to support
 
@@ -297,19 +533,32 @@ def get_recommendations():
 @app.route('/api/posts', methods=['GET'])
 def get_posts():
     """
-    Get mock social media posts
+    Get social media posts - real or mock data
     """
     count = request.args.get('count', 20, type=int)
-    posts = generate_mock_posts(count)
+    
+    # Try to load real data first
+    try:
+        with open('real_data.json', 'r') as f:
+            import json
+            all_posts = json.load(f)
+            posts = all_posts[:count]
+            print(f"✅ Loaded {len(posts)} posts from real_data.json")
+    except FileNotFoundError:
+        # Fall back to mock data if file doesn't exist
+        posts = generate_mock_posts(count)
+        print(f"ℹ️ Using mock data ({len(posts)} posts)")
     
     # Analyze each post
     for post in posts:
-        analysis = analyze_sentiment(post['text'])
-        post['sentiment_score'] = analysis['score']
+        if 'sentiment_score' not in post:
+            analysis = analyze_sentiment(post['text'])
+            post['sentiment_score'] = analysis['score']
     
     return jsonify({
         'posts': posts,
-        'total': len(posts)
+        'total': len(posts),
+        'data_source': 'real' if 'real_data.json' else 'mock'
     })
 
 @app.route('/api/statistics', methods=['GET'])
