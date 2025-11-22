@@ -354,10 +354,7 @@
             messageDiv.appendChild(bubble);
             chatContainer.appendChild(messageDiv);
 
-            // Hide typing indicator
             document.getElementById('typingIndicator').style.display = 'none';
-
-            // Scroll to bottom
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
@@ -394,15 +391,11 @@
 
             if (!query) return;
 
-            // Add user message
             addMessage(query, true);
             input.value = '';
-
-            // Show typing indicator
             showTypingIndicator();
 
             try {
-                // Call API
                 const response = await fetch(`${API_URL}/api/recommend`, {
                     method: 'POST',
                     headers: {
@@ -416,11 +409,8 @@
                 }
 
                 const data = await response.json();
-
-                // Create response
                 const responseContainer = document.createElement('div');
                 
-                // Add sentiment with VADER breakdown
                 const sentiment = data.sentiment.sentiment;
                 const sentimentScore = data.sentiment.score;
                 const positive = data.sentiment.positive || 0;
@@ -435,7 +425,6 @@
                 `;
                 responseContainer.appendChild(sentimentText);
                 
-                // Add VADER breakdown
                 const breakdownText = document.createElement('p');
                 breakdownText.innerHTML = `
                     <small style="color: #718096;">
@@ -447,7 +436,6 @@
                 breakdownText.style.marginTop = '5px';
                 responseContainer.appendChild(breakdownText);
 
-                // Add topics
                 if (data.topics && data.topics.length > 0) {
                     const topicsText = document.createElement('p');
                     topicsText.innerHTML = `<strong>Topics detected:</strong> ${data.topics.join(', ')}`;
@@ -455,7 +443,6 @@
                     responseContainer.appendChild(topicsText);
                 }
 
-                // Add recommendations
                 if (data.recommendations && data.recommendations.length > 0) {
                     const recsText = document.createElement('p');
                     recsText.innerHTML = '<strong>Here are some resources that might help:</strong>';
@@ -492,7 +479,6 @@
             }
         }
 
-        // Focus input on load
         document.getElementById('userInput').focus();
     </script>
 </body>
