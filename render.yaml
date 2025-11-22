@@ -5,7 +5,7 @@ services:
     env: python
     region: oregon
     plan: free
-    buildCommand: "pip install -r requirements.txt && python -m textblob.download_corpora"
+    buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn backend_api:app"
     healthCheckPath: /api/health
     envVars:
