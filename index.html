@@ -150,6 +150,217 @@
             border-color: #0075C9;
         }
         
+        /* Chatbot Styles */
+        .chatbot-container {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 0;
+            margin-top: 20px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .chat-message.bot .chat-avatar {
+            background: linear-gradient(135deg, #0075C9, #005a9c);
+            color: white;
+        }
+        
+        .chat-message.user .chat-avatar {
+            background: #6B8E23;
+            color: white;
+        }
+        
+        .chat-bubble {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        
+        .chat-message.bot .chat-bubble {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top-left-radius: 4px;
+        }
+        
+        .chat-message.user .chat-bubble {
+            background: #0075C9;
+            color: white;
+            border-top-right-radius: 4px;
+        }
+        
+        .resource-card {
+            background: #f0f7ff;
+            border-left: 4px solid #0075C9;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 6px;
+        }
+        
+        .resource-card strong {
+            color: #0075C9;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .resource-card small {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 18px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            border-top-left-radius: 4px;
+            width: fit-content;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0075C9;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 0 0 12px 12px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: #0075C9;
+        }
+        
+        .send-button {
+            background: #0075C9;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .send-button:hover {
+            background: #005a9c;
+            transform: scale(1.05);
+        }
+        
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .quick-replies {
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 15px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-reply {
+            background: white;
+            border: 1px solid #0075C9;
+            color: #0075C9;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-reply:hover {
+            background: #0075C9;
+            color: white;
+        }
+        
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -261,6 +472,21 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .chat-bubble {
+                max-width: 85%;
+            }
+            
+            .chatbot-container {
+                height: 400px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -292,14 +518,37 @@
             <div id="sentimentOutput" class="output" style="display: none;"></div>
         </div>
 
-        <!-- Resource Recommendations -->
+        <!-- Interactive Chatbot -->
         <div class="demo-section">
-            <h2>💬 Smart Resource Recommender</h2>
-            <p style="color: #666; margin-bottom: 15px;">AI-powered matching of business needs to County resources</p>
-            <input type="text" id="recommendQuery" placeholder="What do you need help with?"
-                   value="I need help getting a business permit">
-            <button class="button" onclick="getRecommendations()">Get Recommendations</button>
-            <div id="recommendOutput" class="output" style="display: none;"></div>
+            <h2>💬 Ask Our AI Assistant</h2>
+            <p style="color: #666; margin-bottom: 15px;">Get personalized help and resource recommendations</p>
+            
+            <div class="chatbot-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        <div class="chat-avatar">🤖</div>
+                        <div class="chat-bubble">
+                            Hi! 👋 I'm the Miami-Dade County Small Business Assistant. I can help you find resources for permits, funding, training, taxes, and more. What do you need help with today?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-replies" id="quickReplies">
+                    <button class="quick-reply" onclick="sendQuickReply('I need help with permits')">📋 Permits</button>
+                    <button class="quick-reply" onclick="sendQuickReply('Looking for business funding')">💰 Funding</button>
+                    <button class="quick-reply" onclick="sendQuickReply('Need business training')">📚 Training</button>
+                    <button class="quick-reply" onclick="sendQuickReply('Tax questions')">💵 Taxes</button>
+                </div>
+                
+                <div class="chat-input-container">
+                    <input type="text" 
+                           class="chat-input" 
+                           id="chatInput" 
+                           placeholder="Type your message here..."
+                           onkeypress="handleChatKeyPress(event)">
+                    <button class="send-button" id="sendButton" onclick="sendMessage()">Send 📤</button>
+                </div>
+            </div>
         </div>
 
         <!-- Social Media Posts -->
@@ -327,6 +576,9 @@
     <script>
         // Your live API!
         const API_URL = 'https://md-county-sentiment.onrender.com';
+        
+        // Chatbot state
+        let isProcessing = false;
         
         function showOutput(elementId, content, type = 'normal') {
             const element = document.getElementById(elementId);
@@ -405,14 +657,74 @@
             }
         }
 
-        async function getRecommendations() {
-            const query = document.getElementById('recommendQuery').value;
-            if (!query) {
-                showOutput('recommendOutput', 'Please enter a query', 'error');
-                return;
-            }
+        // Chatbot Functions
+        function addMessage(text, isUser = false) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isUser ? 'user' : 'bot'}`;
             
-            showOutput('recommendOutput', '', 'loading');
+            const avatar = document.createElement('div');
+            avatar.className = 'chat-avatar';
+            avatar.textContent = isUser ? '👤' : '🤖';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble';
+            bubble.innerHTML = text;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(bubble);
+            messagesDiv.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesDiv = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot';
+            typingDiv.id = 'typingIndicator';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'chat-avatar';
+            avatar.textContent = '🤖';
+            
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(indicator);
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        async function sendMessage() {
+            if (isProcessing) return;
+            
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            input.value = '';
+            
+            // Disable input
+            isProcessing = true;
+            document.getElementById('sendButton').disabled = true;
+            input.disabled = true;
+            
+            // Show typing indicator
+            showTypingIndicator();
             
             try {
                 const response = await fetch(`${API_URL}/api/recommend`, {
@@ -420,31 +732,62 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ query: query })
+                    body: JSON.stringify({ query: message })
                 });
                 
                 const data = await response.json();
                 
-                let output = `
-📝 Your Query: "${data.query}"
-
-🎯 Detected Sentiment: ${data.sentiment.sentiment.toUpperCase()} (Score: ${data.sentiment.score})
-🏷️ Identified Topics: ${data.topics.join(', ')}
-
-💡 Recommended County Resources:
-`;
+                // Remove typing indicator
+                removeTypingIndicator();
                 
-                data.recommendations.forEach((rec, index) => {
-                    output += `
-${index + 1}. 📌 ${rec.name}
-   ${rec.description}
-   Relevance Score: ${rec.relevance_score}
-`;
-                });
+                // Build response message
+                let responseHTML = `I analyzed your request and found it has <strong>${data.sentiment.sentiment}</strong> sentiment.`;
                 
-                showOutput('recommendOutput', output, 'success');
+                if (data.topics.length > 0) {
+                    responseHTML += ` I detected you're interested in: <strong>${data.topics.join(', ')}</strong>.`;
+                }
+                
+                if (data.recommendations.length > 0) {
+                    responseHTML += `<br><br>Here are the resources I recommend:`;
+                    
+                    data.recommendations.forEach((rec, index) => {
+                        responseHTML += `
+                            <div class="resource-card">
+                                <strong>${index + 1}. ${rec.name}</strong>
+                                ${rec.description}
+                                <small>Relevance: ${Math.round(rec.relevance_score * 100)}%</small>
+                            </div>
+                        `;
+                    });
+                    
+                    responseHTML += `<br>Would you like more information about any of these?`;
+                } else {
+                    responseHTML += ` I can help you with permits, funding, training, taxes, or general business support. What specific area interests you?`;
+                }
+                
+                addMessage(responseHTML, false);
+                
             } catch (error) {
-                showOutput('recommendOutput', 'Error: ' + error.message, 'error');
+                removeTypingIndicator();
+                addMessage('Sorry, I had trouble processing that. Please try again or rephrase your question.', false);
+            }
+            
+            // Re-enable input
+            isProcessing = false;
+            document.getElementById('sendButton').disabled = false;
+            input.disabled = false;
+            input.focus();
+        }
+
+        function sendQuickReply(text) {
+            document.getElementById('chatInput').value = text;
+            sendMessage();
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
             }
         }
 
@@ -492,8 +835,8 @@ ${index + 1}. 📌 ${rec.name}
                             <div class="post-meta">
                                 <span class="sentiment-badge ${post.sentiment}">${post.sentiment.toUpperCase()}</span>
                                 <span>📝 ${post.topic}</span>
-                                <span>🕒 ${post.timestamp}</span>
-                                <span>📱 ${post.source || 'Social Media'}</span>
+                                <span>🕒 ${post.timestamp.split('T')[0]}</span>
+                                <span>📱 ${post.source}</span>
                             </div>
                         </div>
                     `;
@@ -510,10 +853,9 @@ ${index + 1}. 📌 ${rec.name}
         // Welcome message on page load
         window.onload = function() {
             console.log('✅ Miami-Dade County Sentiment Platform');
+            console.log('🤖 Interactive Chatbot Ready!');
             console.log('API URL:', API_URL);
-            console.log('Ready to analyze sentiment!');
         };
     </script>
 </body>
 </html>
-
